@@ -1,41 +1,9 @@
 import { useState } from "react";
 import "./ExpenseForm.css";
 
-const ExpenseForm = function () {
+const ExpenseForm = function (props) {
   /* You can also use a one state approach.
-  The change handlers are always based on the previous state, therefore I used a function that accepts the previous state snapshot (prevState parameter), then updates it.
-
-  It will look like this:
-
-    const [userInput, setUserInput] = useState({
-    enteredTitle: "",
-    enteredAmount: "",
-    enteredDate: "",
-  });
-
-  const titleChangeHandler = function (event) {
-    setUserInput((prevState) => {
-      return { ...prevState, enteredTitle: event.target.value };
-    });
-  };
-
-  const amountChangeHandler = function (event) {
-    setUserInput((prevState) => {
-      return {
-        ...prevState,
-        enteredAmount: event.target.value,
-      };
-    });
-  };
-
-  const dateCangeHandler = function (event) {
-    setUserInput((prevState) => {
-      return {
-        ...prevState,
-        enteredDate: event.target.value,
-      };
-    });
-  };
+  The change handlers are always based on the previous state, therfore using a function that accepts the previous state snapshot (prevState parameter), then updates it. Full code for that: https://github.com/academind/react-complete-guide-code/blob/04-react-state-events/code/05-handling-form-submission/src/components/NewExpense/ExpenseForm.js
  */
 
   const [enteredTitle, setEnteredTitle] = useState("");
@@ -54,8 +22,18 @@ const ExpenseForm = function () {
     setEnteredDate(event.target.value);
   };
 
-  const submitHandler = function (event) {
-    event.preventDeafult();
+  const submitHandler = (event) => {
+    event.preventDefault();
+
+    const expenseData = {
+      title: enteredTitle,
+      amount: enteredAmount,
+      date: new Date(enteredDate),
+    };
+    props.onSaveExpenseData(expenseData);
+    setEnteredTitle("");
+    setEnteredAmount("");
+    setEnteredDate("");
   };
 
   return (
@@ -63,7 +41,11 @@ const ExpenseForm = function () {
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label>Title</label>
-          <input type="text" onChange={titleChangeHandler} />
+          <input
+            type="text"
+            value={enteredTitle}
+            onChange={titleChangeHandler}
+          />
         </div>
         <div className="new-expense__control">
           <label>Amount</label>
@@ -71,6 +53,7 @@ const ExpenseForm = function () {
             type="number"
             min="0.01"
             step="0.01"
+            value={enteredAmount}
             onChange={amountChangeHandler}
           />
         </div>
@@ -79,13 +62,14 @@ const ExpenseForm = function () {
           <input
             type="date"
             min="2019-01-01"
-            max="2023-212-31"
+            max="2023-12-31"
+            value={enteredDate}
             onChange={dateChangeHandler}
           />
         </div>
       </div>
       <div className="new-expense__actions">
-        <button type="submit">Add expense</button>
+        <button type="submit">Add Expense</button>
       </div>
     </form>
   );
