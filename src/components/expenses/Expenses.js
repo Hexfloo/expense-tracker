@@ -1,9 +1,8 @@
 import { useState } from "react";
-
-import ExpenseItem from "./ExpenseItem";
+import "./Expenses.css";
 import Card from "../ui/Card";
 import ExpensesFilter from "./ExpensesFilter";
-import "./Expenses.css";
+import ExpensesList from "./ExpensesList";
 
 function Expenses(props) {
   const [year, setYear] = useState("2022");
@@ -12,6 +11,7 @@ function Expenses(props) {
     setYear(pickedYear);
   };
 
+  // Logic for filtering by year, based on state. Passed on to ExpensesList component.
   const filteredExpenses = props.items.filter((expense) => {
     return expense.date.getFullYear().toString() === year;
   });
@@ -20,17 +20,16 @@ function Expenses(props) {
     <div>
       <Card className="expenses">
         <ExpensesFilter selected={year} onYearChange={yearDropdownHandler} />
-        {filteredExpenses.map((expense) => (
-          <ExpenseItem
-            key={expense.id}
-            title={expense.title}
-            amount={expense.amount}
-            date={expense.date}
-          />
-        ))}
+        <ExpensesList items={filteredExpenses} />
       </Card>
     </div>
   );
 }
+
+/*
+ANOTHER WAY OF OUTPUTTING THE CONDITIONAL CONTENT IS:
+{filteredExpenses.length === 0 && <p>No expenses found.</p>}
+{filteredExpenses.length > 0 && allFilteredExpenses}
+*/
 
 export default Expenses;
