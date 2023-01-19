@@ -2,6 +2,6 @@
 
 This React app helps you track your expenses by year.
 
-### Try it here: https://expense-tracker-chi-coral.vercel.app/
+### Try it here: https://hexfloo-expense-tracker.vercel.app/
 
 
