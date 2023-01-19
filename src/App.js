@@ -27,7 +27,31 @@ const INITIAL_EXPENSES = [
     id: "e5",
     title: "Pet Insurance",
     amount: 439,
-    date: new Date(2022, 5, 12),
+    date: new Date(2022, 1, 12),
+  },
+  {
+    id: "e6",
+    title: "Computer Screen",
+    amount: 400,
+    date: new Date(2022, 3, 23),
+  },
+  {
+    id: "e6",
+    title: "Pet Insurance",
+    amount: 439,
+    date: new Date(2023, 1, 13),
+  },
+  {
+    id: "e7",
+    title: "Birthday Party Decorations",
+    amount: 107,
+    date: new Date(2023, 0, 2),
+  },
+  {
+    id: "e8",
+    title: "Shoes",
+    amount: 87,
+    date: new Date(2023, 0, 15),
   },
 ];
 
