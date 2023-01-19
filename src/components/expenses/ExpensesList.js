@@ -10,11 +10,11 @@ const ExpensesList = function (props) {
       date={expense.date}
     />
   ));
-  console.log(props.items);
+
   return (
     <ul className="expenses-list">
       {props.items.length === 0 ? (
-        <p>No expenses found.</p>
+        <h2 className="expenses-list__fallback">No expenses found.</h2>
       ) : (
         allFilteredExpenses
       )}

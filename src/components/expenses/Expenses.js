@@ -17,12 +17,12 @@ function Expenses(props) {
   });
 
   return (
-    <div>
+    <li>
       <Card className="expenses">
         <ExpensesFilter selected={year} onYearChange={yearDropdownHandler} />
         <ExpensesList items={filteredExpenses} />
       </Card>
-    </div>
+    </li>
   );
 }
 
