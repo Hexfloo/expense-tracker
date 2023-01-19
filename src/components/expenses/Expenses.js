@@ -6,7 +6,7 @@ import ExpensesList from "./ExpensesList";
 import ExpensesChart from "./ExpensesChart";
 
 function Expenses(props) {
-  const [year, setYear] = useState("2022");
+  const [year, setYear] = useState("2023");
 
   const yearDropdownHandler = function (pickedYear) {
     setYear(pickedYear);
@@ -18,13 +18,13 @@ function Expenses(props) {
   });
 
   return (
-    <li>
+    <div>
       <Card className="expenses">
         <ExpensesFilter selected={year} onYearChange={yearDropdownHandler} />
         <ExpensesChart expenses={filteredExpenses} />
         <ExpensesList items={filteredExpenses} />
       </Card>
-    </li>
+    </div>
   );
 }
 
